@@ -6,6 +6,8 @@
         Add New User
       </button>
     </div>
+    <button class="btn btn-primary" @click="handleLogOut">Log out</button>
+
     <table class="table m-5">
       <thead>
         <tr>
@@ -64,10 +66,10 @@ export default {
 
   mounted() {
     // console.log("1");
-    let token = localStorage.getItem("token");
-    if (!token) {
-      this.$router.push("/login");
-    }
+    // let token = localStorage.getItem("token");
+    // if (!token) {
+    //   this.$router.push("/login");
+    // }
   },
   watch: {
     response: function () {
@@ -106,6 +108,12 @@ export default {
       }
       // this.$refs["my-modal"].show();
       // console.log("item :", item);
+    },
+
+    handleLogOut() {
+      let token = localStorage.getItem("token");
+      localStorage.removeItem("token", token);
+      this.$router.push("/addNewUser");
     },
   },
 };

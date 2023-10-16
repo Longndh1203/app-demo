@@ -65,7 +65,6 @@ export default {
         if (res?.data?.token) {
           localStorage.setItem("token", res.data.token);
           console.log(res?.data?.token);
-          alert("login sucess");
           this.$router.push("/listUser");
         } else {
           alert("Login failed");
