@@ -2,7 +2,9 @@
   <div class="container-list">
     <div class="d-flex justify-content-between p-5">
       <h2>List User</h2>
-      <button class="btn btn-primary" @click="handleAddNew">Add New User</button>
+      <button class="btn btn-primary" @click="handleAddNew">
+        Add New User
+      </button>
     </div>
     <table class="table m-5">
       <thead>
@@ -36,6 +38,7 @@
 <script>
 import axios from "axios";
 import ModalDeleteUser from "@/components/ModalDeleteUser.vue";
+
 export default {
   name: "AppDemoListUser",
   components: {
@@ -48,6 +51,7 @@ export default {
       itemSelected: {},
       listUser: [],
       id: "",
+      newListUser: [],
     };
   },
   async created() {
@@ -60,6 +64,10 @@ export default {
 
   mounted() {
     // console.log("1");
+    let token = localStorage.getItem("token");
+    if (!token) {
+      this.$router.push("/login");
+    }
   },
   watch: {
     response: function () {
@@ -86,11 +94,18 @@ export default {
       this.itemSelected = item;
       this.$bvModal.show("bv-modal-example");
     },
-    handleDeleteUser(item) {
-      // const res = await axios.delete(`https://fakestoreapi.com/users/${id}`);
+    async handleDeleteUser(user) {
+      const res = await axios.delete(
+        `https://fakestoreapi.com/users/${user.id}`
+      );
       // console.log(res);
-      this.$refs["my-modal"].show();
-      console.log("item :", item);
+
+      if (res) {
+        const index = this.listUser.indexOf(user.id);
+        this.listUser.splice(index, 1);
+      }
+      // this.$refs["my-modal"].show();
+      // console.log("item :", item);
     },
   },
 };
@@ -104,5 +119,4 @@ export default {
 .list-user_text {
   margin: auto 0;
 }
-
 </style>

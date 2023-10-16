@@ -22,17 +22,8 @@
           />
           <i class="bx bxs-lock-alt"></i>
         </div>
-        <div class="remember-forgot">
-          <label for=""> <input type="checkbox" />Remember me </label>
-          <label for=""><a href="#">Forgot password</a></label>
-        </div>
 
         <button class="btn" type="button" @click="handleSubmit">Login</button>
-
-        <div class="register-link">
-          <p>Don't have an account ?</p>
-          <a href="#">Register</a>
-        </div>
       </form>
     </div>
   </div>
@@ -99,7 +90,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url(../assets/bg-login.jpg) no-repeat;
+  background: palegreen;
   background-size: cover;
   background-position: center;
 }
