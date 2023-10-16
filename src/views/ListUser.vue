@@ -1,11 +1,12 @@
 <template>
-  <div>
-    List User
-    <button @click="handleAddNew">Add New User</button>
-    <table class="table">
+  <div class="container-list">
+    <div class="d-flex justify-content-between p-5">
+      <h2>List User</h2>
+      <button class="btn btn-primary" @click="handleAddNew">Add New User</button>
+    </div>
+    <table class="table m-5">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">ID</th>
           <th scope="col">Firstname</th>
           <th scope="col">Phone</th>
@@ -15,7 +16,6 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in listUser" :key="index">
-          <td>{{ index }}</td>
           <td>{{ item.id }}</td>
           <td>{{ item.username }}</td>
           <td>{{ item.phone }}</td>
@@ -96,4 +96,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.container-list {
+  max-width: 1380px;
+  margin: 0 auto;
+}
+.list-user_text {
+  margin: auto 0;
+}
+
+</style>

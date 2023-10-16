@@ -1,5 +1,5 @@
 <template>
-  <div class="container-main gap-5">
+  <div class="container-main gap-5 p-5">
     <div class="d-flex justify-content-around">
       <div class="p-2">Add New User</div>
       <button type="button" class="btn btn-primary" @click="handlerAddUser">
@@ -27,7 +27,7 @@
       aria-label=".form-control-lg example"
       v-model="email"
     />
-    <button @click="addItem">Save</button>
+    <button class="btn btn-primary add-item" @click="addItem">Save</button>
   </div>
 </template>
 
@@ -79,5 +79,9 @@ export default {
   max-width: 800px;
   display: flex;
   flex-direction: column;
+}
+.add-item {
+  width: 100px;
+  margin-left: auto;
 }
 </style>
