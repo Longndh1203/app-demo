@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in listUser" :key="index">
+        <tr v-for="(item, index) in products" :key="index">
           <td>{{ item.id }}</td>
           <td>{{ item.username }}</td>
           <td>{{ item.phone }}</td>
@@ -51,20 +51,26 @@ export default {
     return {
       modalShow: false,
       itemSelected: {},
-      listUser: [],
+      // listUser: [],
       id: "",
-      newListUser: [],
+      // newListUser: [],
     };
   },
   async created() {
-    await axios.get("https://fakestoreapi.com/users").then((res) => {
-      // console.log(res.data);
-      //   console.log("2");
-      this.listUser = res.data;
-    });
+    // await axios.get("https://fakestoreapi.com/users").then((res) => {
+    //   // console.log(res.data);
+    //   //   console.log("2");
+    //   this.listUser = res.data;
+    // });
+  },
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
   },
 
   mounted() {
+    this.$store.dispatch("getProducts");
     // console.log("1");
     // let token = localStorage.getItem("token");
     // if (!token) {
@@ -103,8 +109,8 @@ export default {
       // console.log(res);
 
       if (res) {
-        const index = this.listUser.indexOf(user.id);
-        this.listUser.splice(index, 1);
+        const index = this.products.indexOf(user.id);
+        this.products.splice(index, 1);
       }
       // this.$refs["my-modal"].show();
       // console.log("item :", item);
